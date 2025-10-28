@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EDGARD TORRES · Portafolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <!--
+    Portafolio creado para Programación Web · Manipulación del DOM
+    Características clave que cumplen la actividad:
+      1) Sección de Galería/Proyectos con 8 tarjetas.
+      2) Controles de UI para filtrar (mostrar/ocultar por categoría).
+      3) Un botón que cambia dinámicamente texto e imagen de una tarjeta destacada.
+      4) Todo ocurre sin recargar la página, usando addEventListener, classList, dataset, textContent, src, etc.
+      5) Código comentado: busca 'DOM:' para ver la lógica.
+  -->
+  <header class="site-header container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="dot"></div>
+        <span>EDGARD RICARDO <b>TORRES SUÁREZ</b></span>
+      </div>
+      <ul class="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="actions">
+        <button id="themeToggle" class="btn ghost" aria-label="Cambiar tema">Tema</button>
+        <a class="btn primary" href="#contacto">Contáctame</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <!-- Hero -->
+    <section class="hero container">
+      <div class="hero-text">
+        <h1>Ingeniero en <span class="grad">Sistemas</span> +<br/> Estudiante de <span class="grad">Negocios Internacionales</span></h1>
+        <p>Licenciatura en modo virtual en ANI, desarrollo web, ciencia de datos y soluciones para negocios. Me encanta construir productos digitales con impacto.</p>
+        <div class="cta">
+          <a href="#proyectos" class="btn primary">Ver Proyectos</a>
+          <button id="highlightRandomizer" class="btn ghost">Mezclar proyecto destacado</button>
+        </div>
+        <div class="badges">
+          <span class="badge">HTML</span>
+          <span class="badge">CSS</span>
+          <span class="badge">JavaScript</span>
+          <span class="badge">SQL</span>
+          <span class="badge">Data</span>
+          <span class="badge">Business</span>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="glow"></div>
+        <img id="highlightImg" alt="Proyecto destacado" src="https://i.pinimg.com/1200x/ef/c8/78/efc87887230039968639d32aead40c17.jpg" />
+        <div class="card-floating">
+          <p id="highlightTitle">MEZCLANDO CREATIVIDAD Y CODIGO</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filtros y búsqueda -->
+    <section class="controls container" aria-label="Controles de filtrado">
+      <div class="filters">
+        <button class="chip active" data-filter="all">Todos</button>
+        <button class="chip" data-filter="web">Web</button>
+        <button class="chip" data-filter="data">Data</button>
+        <button class="chip" data-filter="business">Business</button>
+      </div>
+      <div class="search">
+        <input id="searchInput" type="search" placeholder="Buscar proyecto por título..."/>
+      </div>
+    </section>
+    <!-- Cuadro transparente de servicios -->
+<div style="
+  max-width:820px;
+  margin:40px auto;
+  background:rgba(255,255,255,0.10);
+  border:1px solid rgba(168,85,247,0.45);
+  border-radius:18px;
+  padding:24px 22px;
+  box-shadow:0 12px 40px rgba(173, 122, 214, 0.367);
+  backdrop-filter:blur(10px) saturate(120%);
+  -webkit-backdrop-filter:blur(10px) saturate(120%);
+  color:#a855f7;
+  font-family:'Inter',sans-serif;
+">
+  <h2 style="margin:0 0 10px;font-size:26px;font-weight:700;
+    background:linear-gradient(90deg,#c084fc,#a855f7);
+    -webkit-background-clip:text;background-clip:text;color:transparent;">
+    Servicios de manejo y edición de contenido para redes sociales
+  </h2>
+  <ul style="margin:0;padding-left:18px;line-height:1.6;">
+    <li>Edición de fotos y videos para redes.</li>
+    <li>Diseño de flyers, banners y publicaciones digitales.</li>
+    <li>Creación de contenido visual coherente con tu marca.</li>
+    <li>Planeación y gestión de redes (Facebook, Instagram, TikTok).</li>
+    <li>Redacción de textos publicitarios y estrategia de comunicación.</li>
+    <li>Diseño de logotipos y branding básico.</li>
+  </ul>
+</div>
+
+
+    <!-- Galería/Proyectos -->
+    <section id="proyectos" class="projects container">
+      <h2>Proyectos <span class="grad">Destacados</span></h2>
+      <div class="grid" id="projectsGrid">
+        <!-- Cada tarjeta usa data-category para el filtrado -->
+        <article class="card" data-category="web">
+          <img src="https://i.pinimg.com/1200x/0a/14/36/0a1436459008eb4ba0daa2b9dde49449.jpg" alt="UI Components"/>
+          <div class="card-body">
+            <h3 class="card-title">UI Kit y Componentes Reusables</h3>
+            <p>Biblioteca liviana de componentes JS + CSS para proyectos rápidos.</p>
+            <div class="tags"><span>Web</span><span>Frontend</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-category="data">
+          <img src="https://i.pinimg.com/736x/8a/13/43/8a1343f2a9a00798f48b7221db748634.jpg" alt="EDA"/>
+          <div class="card-body">
+            <h3 class="card-title">EDA de Ventas en Retail</h3>
+            <p>Análisis exploratorio con limpieza de datos y visualizaciones.</p>
+            <div class="tags"><span>Data</span><span>Pandas</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-category="business">
+          <img src="https://i.pinimg.com/736x/92/16/bc/9216bcd74a3d55de1a26021541003489.jpg" alt="Plan de negocio"/>
+          <div class="card-body">
+            <h3 class="card-title">Plan de Negocio para E‑commerce</h3>
+            <p>Estrategia go‑to‑market, unit economics y roadmap de producto.</p>
+            <div class="tags"><span>Business</span><span>E‑commerce</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-category="web">
+          <img src="https://i.pinimg.com/736x/dd/a7/02/dda70285fa1052846580eb4ca0e6593d.jpg" alt="Agenda App"/>
+          <div class="card-body">
+            <h3 class="card-title">My Atomic Agenda (Web)</h3>
+            <p>Gestor de hábitos para estudiantes con almacenamiento local.</p>
+            <div class="tags"><span>Web</span><span>Productividad</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-category="data">
+          <img src="https://i.pinimg.com/1200x/b0/3f/81/b03f815fb319ce720eea730cf59ff111.jpg" alt="Regresión"/>
+          <div class="card-body">
+            <h3 class="card-title">Regresión Publicidad → Ventas</h3>
+            <p>Modelo lineal para estimar impacto de inversión publicitaria.</p>
+            <div class="tags"><span>Data</span><span>ML</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-category="business">
+          <img src="https://scontent.fjal2-1.fna.fbcdn.net/v/t39.30808-6/569045032_1289117046560659_1795443147967328224_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=6ee11a&_nc_eui2=AeG-CNdp2spen2t0U_thDcz1B5YBFpsMqhEHlgEWmwyqEa25DGpO7FTs-vPhE2G4Ek4tFo2c9h7DADkHX8tHP-B-&_nc_ohc=sUM0RqbM4ZcQ7kNvwFUCX7G&_nc_oc=AdkrlXsODwNEQcPNK8560SNJmJzs_MKrcz_4zlApSub3eCPqIxSJkEC9KGIOGDbxBbw7qUcFLwl2OcLwMEnmifdO&_nc_zt=23&_nc_ht=scontent.fjal2-1.fna&_nc_gid=9RtnZey4anZdMhzABjVB_g&oh=00_AfeUqkIcAbLHRqfmpPS4WTA7BIuO4OkoD5_U9NrwTOxJrg&oe=6906B362" alt="CMIC Marketing"/>
+          <div class="card-body">
+            <h3 class="card-title">Campaña CMIC Veracruz Centro</h3>
+            <p>Guiones, piezas para redes y medición de resultados.</p>
+            <div class="tags"><span>Business</span><span>Marketing</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-category="web">
+          <img src="https://i.pinimg.com/736x/d4/8f/fa/d48ffabada36a0562f0b1260274227c6.jpg" alt="Leaflet GIS"/>
+          <div class="card-body">
+            <h3 class="card-title">PaluGIS (Mapa Estratos/Casos)</h3>
+            <p>Mapa interactivo con Leaflet, CSV y exportación a PNG/PDF.</p>
+            <div class="tags"><span>Web</span><span>GIS</span></div>
+          </div>
+        </article>
+
+        <article class="card" data-category="data">
+          <img src="https://i.pinimg.com/736x/7f/ee/2c/7fee2c2fb3523bb34f3268f94aba1102.jpg" alt="Dashboards"/>
+          <div class="card-body">
+            <h3 class="card-title">Dashboard KPIs Restaurante</h3>
+            <p>Rentabilidad diaria y proyección de flujo de caja.</p>
+            <div class="tags"><span>Data</span><span>KPIs</span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="skills container">
+      <h2>Skills</h2>
+      <ul class="skill-list">
+        <li><span>Frontend</span><small>HTML · CSS · JS · Leaflet</small></li>
+        <li><span>Data</span><small>Python · Pandas · Scikit-learn</small></li>
+        <li><span>Backend</span><small>Flask · MySQL · REST</small></li>
+        <li><span>Negocios</span><small>E‑commerce · Marketing · Análisis</small></li>
+      </ul>
+    </section>
+
+    <!-- Contacto -->
+<section id="contacto" class="contact container">
+  <h2>¿Hacemos algo <span class="grad">grande</span> juntos?</h2>
+
+  <!-- Formulario con envío directo a WhatsApp -->
+  <form id="contactForm" class="contact-form">
+    <input id="nameInput" type="text" placeholder="Tu nombre" required>
+    <input id="emailInput" type="email" placeholder="Tu correo" required>
+    <textarea id="msgInput" rows="4" placeholder="Cuéntame de tu proyecto..." required></textarea>
+    <button class="btn primary" type="submit">Enviar por WhatsApp</button>
+  </form>
+</section>
+
+  <footer class="site-footer container">
+    <p>© <span id="year"></span> Edgard Torres · Portafolio</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
